@@ -114,6 +114,5 @@ public class UserEntity extends BaseEntity {
 		return "UserEntity [userName=" + userName + ", passWord=" + passWord + ", fullName=" + fullName + ", address="
 				+ address + ", email=" + email + ", phoneNumber=" + phoneNumber + ", fileName=" + fileName;
 	}
-
 }
 	
