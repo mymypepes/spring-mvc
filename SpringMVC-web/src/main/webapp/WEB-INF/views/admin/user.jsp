@@ -1,1 +1,1 @@
-<h3>User page</h3>
+<h2>User Page</h2>

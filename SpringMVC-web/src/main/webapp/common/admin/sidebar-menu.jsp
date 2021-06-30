@@ -11,7 +11,8 @@
     -->
 	<div class="logo">
 		<a href="http://www.creative-tim.com" class="simple-text logo-normal">
-			Creative Tim </a>
+		    <i class="material-icons">star_border</i>
+			MyMyPePes </a>
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
@@ -23,30 +24,26 @@
 					<i class="material-icons">person</i>
 					<p>User</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="./tables.html">
-					<i class="material-icons">content_paste</i>
-					<p>Table List</p>
+			<li class="nav-item "><a class="nav-link" href="<c:url value='/admin/role'/>">
+					<i class="material-icons">people</i>
+					<p>Role</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link"
-				href="./typography.html"> <i class="material-icons">library_books</i>
-					<p>Typography</p>
+			<li class="nav-item "><a class="nav-link" href="<c:url value='/admin/new'/>">
+			        <i class="material-icons">library_books</i>
+					<p>News</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="./icons.html">
-					<i class="material-icons">bubble_chart</i>
-					<p>Icons</p>
+			<li class="nav-item "><a class="nav-link" href="<c:url value='/admin/comment'/>">
+					<i class="material-icons">comment</i>
+					<p>Comment</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="./map.html">
+			<li class="nav-item "><a class="nav-link" href="<c:url value='/admin/category'/>"> 
+			        <i class="material-icons">publics</i>
+					<p>Category</p>
+			</a></li>
+			<!-- <li class="nav-item "><a class="nav-link" href="./map.html">
 					<i class="material-icons">location_ons</i>
 					<p>Maps</p>
-			</a></li>
-			<li class="nav-item "><a class="nav-link"
-				href="./notifications.html"> <i class="material-icons">notifications</i>
-					<p>Notifications</p>
-			</a></li>
-			<li class="nav-item "><a class="nav-link" href="./rtl.html">
-					<i class="material-icons">language</i>
-					<p>RTL Support</p>
-			</a></li>
+			</a></li> -->
 			<li class="nav-item active-pro "><a class="nav-link"
 				href="./upgrade.html"> <i class="material-icons">unarchive</i>
 					<p>Upgrade to PRO</p>

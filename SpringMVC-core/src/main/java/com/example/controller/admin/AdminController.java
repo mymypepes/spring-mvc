@@ -16,4 +16,28 @@ public class AdminController {
 		ModelAndView adminPage = new ModelAndView("admin/user");
 		return adminPage;
 	}
+	
+	@GetMapping(value = "admin/role")
+	public ModelAndView rolePage() {
+		ModelAndView rolePage = new ModelAndView("admin/role");
+		return rolePage;
+	}
+	
+	@GetMapping(value = "admin/new")
+	public ModelAndView newPage() {
+		ModelAndView newPage = new ModelAndView("admin/new");
+		return newPage;
+	}
+	
+	@GetMapping(value = "admin/comment")
+	public ModelAndView commentPage() {
+		ModelAndView commentPage = new ModelAndView("admin/comment");
+		return commentPage;
+	}
+	
+	@GetMapping(value = "admin/category")
+	public ModelAndView categoryPage() {
+		ModelAndView categoryPage = new ModelAndView("admin/category");
+		return categoryPage;
+	}
 }
