@@ -8,7 +8,12 @@
 </head>
 
 <body>
-
+	<%-- <security:authorize access="!isAuthenticated()">
+		<a class="login" href="<c:url value='/login'/>">Login</a>
+	</security:authorize>
+	<security:authorize access="isAuthenticated()">
+		<a class="login" href="<c:url value='/logout'/>">Logout</a>
+	</security:authorize> --%>
     <div id="content">
       <!-- begin featured -->
       <div class="featured">

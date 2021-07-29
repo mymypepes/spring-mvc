@@ -8,5 +8,6 @@ import com.example.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, String>{
 	
-//	UserEntity findByFullName(String fullName);
+	public UserEntity findByUserName(String userName);
+	
 }
