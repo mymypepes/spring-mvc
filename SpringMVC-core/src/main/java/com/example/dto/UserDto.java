@@ -1,9 +1,12 @@
 package com.example.dto;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import com.example.entity.UserEntity;
+import com.example.request.admin.CreateUserRequest;
+import com.example.security.SecurityUtils;
 
 public class UserDto extends BaseDto{
 	
@@ -113,9 +116,21 @@ public class UserDto extends BaseDto{
 				+ address + ", email=" + email + ", phoneNumber=" + phoneNumber + ", fileName=" + fileName + ", news="
 				+ news + ", roles=" + roles + ", comment=" + comment + "]";
 	}
-//	public UserDto(UserEntity entity) {
-//		// TODO Auto-generated constructor stub
-//		this.userName = entity.getUserName();
-//	}
+	public static UserDto createUser(CreateUserRequest request) {
+		UserDto result = new UserDto();
+		
+		result.setUserName(request.getUserName());
+		result.setPassWord(request.getPassWord());
+		result.setFullName(request.getFullName());
+		result.setAddress(request.getAddress());
+		result.setEmail(request.getEmail());
+		result.setPhoneNumber(request.getPhoneNumber());
+		result.setFileName(request.getFileName());
+		result.setCreateDate(new Date());
+
+		result.setCreateBy("");
+		return result;
+	}
+	
 	
 }

@@ -177,6 +177,11 @@
             <version>1.9.13</version>
         </dependency>
         <!--end json -->
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-validation</artifactId>
+		    <version>2.5.2</version>
+		</dependency>
   </dependencies>
   <build>
       <plugins>

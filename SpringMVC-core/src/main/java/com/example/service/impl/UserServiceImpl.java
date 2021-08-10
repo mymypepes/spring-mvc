@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -13,6 +14,7 @@ import com.example.common.ResultCode;
 import com.example.converter.UserConverter;
 import com.example.dto.UserDto;
 import com.example.entity.UserEntity;
+import com.example.exception.InternalServerError;
 import com.example.repository.UserRepository;
 import com.example.request.admin.CreateUserRequest;
 import com.example.request.admin.DeleteUserRequest;
@@ -46,33 +48,34 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public CommonResponse createUser(CreateUserRequest request) {
-		//Step 1: Query db 
-		UserEntity userEntity = userRepository.findByUserName(request.getUserName());
-		UserDto userDto = userConverter.convertEntityToDto(userEntity);
-		
-		CommonResponse response = new CommonResponse();
-		//Step 2: Kiểm tra user đã đc tạo chưa (Nếu tồn tại username sẽ báo là username đã tồn tại)
-		if(StringUtils.isEmpty(userDto)) {
-			userDto.setUserName(request.getUserName());
-			userDto.setPassWord(request.getPassWord());
-			userDto.setFullName(request.getFullName());
-			userDto.setAddress(request.getAddress());
-			userDto.setEmail(request.getEmail());
-			userDto.setPhoneNumber(request.getPhoneNumber());
-			userDto.setFileName(request.getFileName());
-		
-			userEntity = userConverter.convertDtoToEntity(userDto);
-			userRepository.save(userEntity);
+		try {
+			//Step 1: Query db findOne == findByUserName == findById
+			UserEntity userEntity = userRepository.findOne(request.getUserName());
+			UserDto userDto = userConverter.convertEntityToDto(userEntity);
 			
-			response.setResultCode(ResultCode._00.getCode());//trường hợp thành công
-			response.setResultMessage(ResultCode._00.getValue());
+			CommonResponse response = new CommonResponse();
+			//Step 2: Kiểm tra user đã đc tạo chưa (Nếu tồn tại username sẽ báo là username đã tồn tại)
+			if(StringUtils.isEmpty(userDto)) {
+				userDto = UserDto.createUser(request);
+				
+				userEntity = userConverter.convertDtoToEntity(userDto);
+				userRepository.save(userEntity);
+				
+				response.setResultCode(ResultCode._00.getCode());//trường hợp thành công
+				response.setResultMessage(ResultCode._00.getValue());
+				return response;
+			}
+			response.setResultCode(ResultCode._01.getCode()); // trường hợp bị sai
+			response.setResultMessage(ResultCode._01.getValue());
 			return response;
+			//Step 3: Sau khi thỏa hết những step trên sẽ insert xuống db
+			//Step 4: Trả ra kết quả
+		} catch (Exception e) {
+			System.out.println("lỗi rồi bạn ơi " + e.toString());
+			throw new InternalServerError(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 		}
-		response.setResultCode(ResultCode._01.getCode()); // trường hợp bị sai
-		response.setResultMessage(ResultCode._01.getValue());
-		return response;
-		//Step 3: Sau khi thỏa hết những step trên sẽ insert xuống db
-		//Step 4: Trả ra kết quả
+		
 	}
 
 	@Override
