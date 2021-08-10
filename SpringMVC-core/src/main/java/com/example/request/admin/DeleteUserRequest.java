@@ -1,15 +1,8 @@
 package com.example.request.admin;
 
-import org.springframework.data.web.JsonPath;
-import org.springframework.http.HttpStatus;
-import org.springframework.util.StringUtils;
-
-import com.example.exception.BadRequestException;
-import com.example.response.admin.CommonResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreateUserRequest {
-	
+public class DeleteUserRequest {
 	@JsonProperty("user_name")
 	private String userName;
 	@JsonProperty("password")
@@ -31,6 +24,7 @@ public class CreateUserRequest {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
 	public String getPassWord() {
 		return passWord;
 	}
@@ -66,11 +60,5 @@ public class CreateUserRequest {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
-	}
-	
-	public void validated() {
-		if (StringUtils.isEmpty(this.userName)) {
-			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "user_name không được rỗng");
-		}//tuong tu bat cho toàn bo field còn lại
 	}
 }

@@ -3,6 +3,7 @@ package com.example.entity;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="users")
+
 public class UserEntity extends BaseEntity {
 	
 	@Id
@@ -39,7 +41,7 @@ public class UserEntity extends BaseEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userentity")
 	private List<NewsEntity> news;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade = CascadeType.ALL)
 	private Set<RoleEntity> roles;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

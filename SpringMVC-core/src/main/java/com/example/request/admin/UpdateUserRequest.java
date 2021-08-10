@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateUserRequest {
 	@JsonProperty("user_name")
 	private String userName;
+	@JsonProperty("password")
+	private String passWord;
 	@JsonProperty("full_name")
 	private String fullName;
 	@JsonProperty("address")
@@ -21,6 +23,13 @@ public class UpdateUserRequest {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	public String getPassWord() {
+		return passWord;
+	}
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
 	public String getFullName() {
 		return fullName;
