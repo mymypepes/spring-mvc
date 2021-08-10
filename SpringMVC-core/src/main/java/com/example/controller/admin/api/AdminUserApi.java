@@ -1,5 +1,7 @@
 package com.example.controller.admin.api;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,7 @@ public class AdminUserApi {
 	private UserService userService;
 	
 	@PostMapping(value = "/api/user/create", consumes = "application/json")
-	public ResponseEntity<CommonResponse> createUser(@RequestBody CreateUserRequest request) {
-		request.validated();
+	public ResponseEntity<CommonResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
 		CommonResponse response = userService.createUser(request);
 		return ResponseEntity.ok(response);
 	}
