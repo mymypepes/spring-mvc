@@ -14,11 +14,11 @@ public interface UserService {
 
 	UserEntity findByUserName(String userName);
 	
-	List<UserEntity> findAll();
+	List<UserEntity> findAll(); 
 	
 	public CommonResponse createUser(CreateUserRequest request);
 	
-	public UpdateUserResponse upadteUser(UpdateUserRequest request);
+	public CommonResponse upadteUser(UpdateUserRequest request);
 	
-	public DeleteUserResponse deleteUser(String userName);
+	public CommonResponse deleteUser(String userName);
 }

@@ -29,36 +29,20 @@ public class AdminUserApi {
 	private UserService userService;
 	
 	@PostMapping(value = "/api/user/create", consumes = "application/json")
-	public ResponseEntity<CommonResponse> createUser(@Valid  @RequestBody CreateUserRequest request) {
+	public ResponseEntity<CommonResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
 		CommonResponse response = userService.createUser(request);
 		return ResponseEntity.ok(response);
 	}
 	
 	@PutMapping(value = "/api/user/update", consumes = "application/json")
-	public UpdateUserResponse updateUser(@RequestBody UpdateUserRequest request) {
-		try {
-			UpdateUserResponse response = userService.upadteUser(request);
-			if(response.getResultCode().equals("00")) {
-				response.setResultMess("thanh cong");
-			}
-			else {
-				response.setResultMess("khong tim thay user_name");
-			}
-			return response;
-		} catch (Exception e) {
-			throw new InternalServerError(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
-		}
+	public ResponseEntity<CommonResponse> updateUser(@Valid @RequestBody UpdateUserRequest request) {
+		CommonResponse response = userService.upadteUser(request);
+		return ResponseEntity.ok(response);
 	}
 	
 	@DeleteMapping(value = "/api/user/delete/{user-name}")
-	public DeleteUserResponse deleteUser(@PathVariable("user-name") String userName) {
-		DeleteUserResponse response = userService.deleteUser(userName);
-		if(response.getResultCode().equals("00")) {
-			response.setResultMess("thanh cong");
-		}
-		else {
-			response.setResultMess("Khong tim thay user_name");
-		}
-		return response;
+	public ResponseEntity<CommonResponse> deleteUser(@PathVariable("user-name") String userName) {
+		CommonResponse response = userService.deleteUser(userName);
+		return ResponseEntity.ok(response);
 	}
 }

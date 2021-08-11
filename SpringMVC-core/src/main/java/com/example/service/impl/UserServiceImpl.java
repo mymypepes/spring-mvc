@@ -79,57 +79,68 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UpdateUserResponse upadteUser(UpdateUserRequest request) {
-		//Step 1: Query db 
-		// dag dung hibernate
-		UserEntity userEntity = userRepository.findByUserName(request.getUserName());
-		// khi query
-		UserDto userDto = userConverter.convertEntityToDto(userEntity);
-		UpdateUserResponse updateUserResponse = new UpdateUserResponse();
-		//Step 2: Kiểm tra user không có
+	public CommonResponse upadteUser(UpdateUserRequest request) {
+		try {
+			//Step 1: Query db 
+			// dag dung hibernate
+			UserEntity userEntity = userRepository.findOne(request.getUserName());
+			// khi query
+			UserDto userDto = userConverter.convertEntityToDto(userEntity);
+			CommonResponse response = new CommonResponse();
+			//Step 2: Kiểm tra user không có
+			
+			if(StringUtils.isEmpty(userDto)) {
+				response.setResultCode(ResultCode._00.getCode());//trường hợp thành công
+				response.setResultMessage(ResultCode._00.getValue());
+				return response;
+				
+			}
+			else {
+				
+				userDto = UserDto.updateUser(request);
+				
+				userEntity = userConverter.convertDtoToEntity(userDto);
+				userRepository.save(userEntity);
+				
+				response.setResultCode(ResultCode._01.getCode()); // trường hợp bị sai
+				response.setResultMessage(ResultCode._01.getValue());
+				return response;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("lỗi rồi bạn ơi " + e.toString());
+			throw new InternalServerError(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+		}
 		
-		if(userDto == null) {
-			updateUserResponse.setResultCode("02");//trường hợp thành công
-			updateUserResponse.setResultMess("khong tim thay");
-			return updateUserResponse;
-			
-		}
-		else {
-			userDto.setUserName(request.getUserName());
-			userDto.setPassWord(request.getPassWord());
-			userDto.setFullName(request.getFullName());
-			userDto.setAddress(request.getAddress());
-			userDto.setEmail(request.getEmail());
-			userDto.setPhoneNumber(request.getPhoneNumber());
-			userDto.setFileName(request.getFileName());
-			
-			userEntity = userConverter.convertDtoToEntity(userDto);
-			userRepository.save(userEntity);
-			
-			updateUserResponse.setResultCode("00"); // trường hợp bị sai
-			updateUserResponse.setResultMess("update thanh cong");
-			return updateUserResponse;
-		}
 			
 		
 	}
 
 	@Override
-	public DeleteUserResponse deleteUser(String userName) {
-		UserEntity userEntity = userRepository.findByUserName(userName);
-		UserDto userDto = userConverter.convertEntityToDto(userEntity);
-		
-		DeleteUserResponse deleteUserResponse = new DeleteUserResponse();
-		if(StringUtils.isEmpty(userDto)){
-			deleteUserResponse.setResultCode("03");
-			deleteUserResponse.setResultMess("Khong tim thay user_name");
-			return deleteUserResponse;
+	public CommonResponse deleteUser(String userName) {
+		try {
+			UserEntity userEntity = userRepository.findOne(userName);
+			UserDto userDto = userConverter.convertEntityToDto(userEntity);
+			
+			CommonResponse response = new CommonResponse();
+			if(StringUtils.isEmpty(userDto)){
+				response.setResultCode(ResultCode._02.getCode()); 
+				response.setResultMessage(ResultCode._02.getValue());
+				return response;
+			}
+			userDto = UserDto.deleteUser(userName);
+			userEntity = userConverter.convertDtoToEntity(userDto);
+			userRepository.delete(userEntity);
+			response.setResultCode(ResultCode._00.getCode());//trường hợp thành công
+			response.setResultMessage(ResultCode._00.getValue());
+			return response;
+			
+		} catch (Exception e) {
+			System.out.println("lỗi rồi bạn ơi " + e.toString());
+			throw new InternalServerError(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 		}
-		userEntity = userConverter.convertDtoToEntity(userDto);
-		userRepository.delete(userEntity);
-		deleteUserResponse.setResultCode("00");
-		deleteUserResponse.setResultMess("Xoa thanh cong");
-		return deleteUserResponse;
 		
 	}
 
