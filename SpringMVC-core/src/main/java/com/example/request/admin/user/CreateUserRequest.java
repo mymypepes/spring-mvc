@@ -1,11 +1,16 @@
-package com.example.request.admin;
+package com.example.request.admin.user;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
+
+import com.example.exception.BadRequestException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateUserRequest {
+public class CreateUserRequest {
+	//không đc rỗng không đc null
 	@NotBlank(message= "user_name không được rỗng")
 	@Size(min = 4, max = 20, message = "Độ dài của user_name từ 4-20 ký tự")
 	@JsonProperty("user_name")
@@ -41,13 +46,13 @@ public class UpdateUserRequest {
 	@JsonProperty("file_name")
 	private String fileName;
 	
+	
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
 	public String getPassWord() {
 		return passWord;
 	}
@@ -83,5 +88,31 @@ public class UpdateUserRequest {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	
+	public void validated() {
+		if (StringUtils.isEmpty(this.userName)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "user_name không được rỗng");
+		}else if(this.userName.length() > 50) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Độ dài tối đa của user_name là 50 ký tự");
+		}else if(this.passWord.length() > 10) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Độ dài tối đa của password là 10 ký tự");
+		}else if(StringUtils.isEmpty(this.passWord)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "password không được rỗng");
+		}else if(StringUtils.isEmpty(this.fullName)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "full_name không được rỗng");
+		}else if(StringUtils.isEmpty(this.fullName)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "full_name không được rỗng");
+		}else if(StringUtils.isEmpty(this.address)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "address không được rỗng");
+		}else if(StringUtils.isEmpty(this.address)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "address không được rỗng");
+		}else if(StringUtils.isEmpty(this.email)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "email không được rỗng");
+		}else if(StringUtils.isEmpty(this.phoneNumber)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "phone_number không được rỗng");
+		}else if(StringUtils.isEmpty(this.fileName)) {
+			throw new BadRequestException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "file_name không được rỗng");
+		}
 	}
 }

@@ -1,6 +1,10 @@
 package com.example.dto;
 
+import java.util.Date;
 import java.util.Set;
+
+import com.example.request.admin.role.CreateRoleRequest;
+import com.example.request.admin.role.UpdateRoleRequest;
 
 public class RoleDto extends BaseDto{
 	private String roleId;
@@ -38,5 +42,25 @@ public class RoleDto extends BaseDto{
 		return "RoleDto [roleId=" + roleId + ", roleName=" + roleName + ", users=" + users + "]";
 	}
 	
+	public static RoleDto createRole(CreateRoleRequest request) {
+		RoleDto result = new RoleDto();
+		
+		result.setRoleId(request.getRoleId());
+		result.setRoleName(request.getRoleName());
+		result.setCreateDate(new Date());
 
+		result.setCreateBy("");
+		return result;
+	}
+	
+	public static RoleDto updateRole(UpdateRoleRequest request) {
+		RoleDto result = new RoleDto();
+		
+		result.setRoleId(request.getRoleId());
+		result.setRoleName(request.getRoleName());
+		result.setUpdateDate(new Date());
+
+		result.setUpdateBy("");
+		return result;
+	}
 }

@@ -4,10 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import com.example.entity.UserEntity;
-import com.example.request.admin.CreateUserRequest;
-import com.example.request.admin.UpdateUserRequest;
-import com.example.security.SecurityUtils;
+import com.example.request.admin.user.CreateUserRequest;
+import com.example.request.admin.user.UpdateUserRequest;
 
 public class UserDto extends BaseDto{
 	
@@ -146,19 +144,6 @@ public class UserDto extends BaseDto{
 		result.setUpdateDate(new Date());
 
 		result.setUpdateBy("abc");
-		return result;
-	}
-	
-	public static UserDto deleteUser(String userName) {
-		UserDto result = new UserDto();
-		
-		result.setUserName(userName.toString());
-		result.setPassWord(userName.toString());
-		result.setFullName(userName.toString());
-		result.setAddress(userName.toString());
-		result.setEmail(userName.toString());
-		result.setPhoneNumber(userName.toString());
-		result.setFileName(userName.toString());
 		return result;
 	}
 }

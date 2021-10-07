@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,7 +16,6 @@ import com.example.converter.UserConverter;
 import com.example.dto.MyUserDetail;
 import com.example.dto.RoleDto;
 import com.example.dto.UserDto;
-import com.example.entity.RoleEntity;
 import com.example.entity.UserEntity;
 import com.example.repository.UserRepository;
 

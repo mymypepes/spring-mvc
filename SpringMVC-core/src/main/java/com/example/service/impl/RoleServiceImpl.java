@@ -10,51 +10,57 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.example.common.ResultCode;
+import com.example.converter.RoleConverter;
 import com.example.converter.UserConverter;
+import com.example.dto.RoleDto;
 import com.example.dto.UserDto;
+import com.example.entity.RoleEntity;
 import com.example.entity.UserEntity;
 import com.example.exception.InternalServerError;
+import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
-import com.example.request.admin.user.CreateUserRequest;
+import com.example.request.admin.role.CreateRoleRequest;
+import com.example.request.admin.role.UpdateRoleRequest;
 import com.example.request.admin.user.UpdateUserRequest;
 import com.example.response.admin.CommonResponse;
-import com.example.service.UserService;
+import com.example.service.RoleService;
+
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class RoleServiceImpl implements RoleService{
 	
 	@Autowired
-	private UserRepository userRepository;
+	private  RoleRepository roleRepository;
 	
 	@Autowired
-	private UserConverter userConverter;
+	private RoleConverter roleConverter;
 	
 	@Override
-	public UserEntity findByUserName(String userName) {
-		UserEntity result = userRepository.findOne(userName);
-		return result;
+	public RoleEntity findByUserName(String userName) {
+		RoleEntity result = roleRepository.findOne(userName);
+		return null;
 	}
 
 	@Override
-	public List<UserEntity> findAll() {
-		List<UserEntity> all = userRepository.findAll();
-		return all;
+	public List<RoleEntity> findAll() {
+		List<RoleEntity> all = roleRepository.findAll();
+		return null;
 	}
 
 	@Override
-	public CommonResponse createUser(CreateUserRequest request) {
+	public CommonResponse createRole(CreateRoleRequest request) {
 		try {
 			//Step 1: Query db findOne == findByUserName == findById
-			UserEntity userEntity = userRepository.findOne(request.getUserName());
-			UserDto userDto = userConverter.convertEntityToDto(userEntity);
+			RoleEntity roleEntity = roleRepository.findOne(request.getRoleName());
+			RoleDto roleDto = roleConverter.convertEntityToDto(roleEntity);
 			
 			CommonResponse response = new CommonResponse();
 			//Step 2: Kiểm tra user đã đc tạo chưa (Nếu tồn tại username sẽ báo là username đã tồn tại)
-			if(StringUtils.isEmpty(userDto)) {
-				userDto = UserDto.createUser(request);
+			if(StringUtils.isEmpty(roleDto)) {
+				roleDto = RoleDto.createRole(request);
 				
-				userEntity = userConverter.convertDtoToEntity(userDto);
-				userRepository.save(userEntity);
+				roleEntity = roleConverter.convertDtoToEntity(roleDto);
+				roleRepository.save(roleEntity);
 				
 				response.setResultCode(ResultCode._00.getCode());//trường hợp thành công
 				response.setResultMessage(ResultCode._00.getValue());
@@ -70,28 +76,29 @@ public class UserServiceImpl implements UserService{
 			throw new InternalServerError(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value())
 					, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 		}
+		
 	}
 
 	@Override
-	public CommonResponse upadteUser(UpdateUserRequest request) {
+	public CommonResponse updateRole(UpdateRoleRequest request) {
 		try {
 			//Step 1: Query db 
 			// dag dung hibernate
-			UserEntity userEntity = userRepository.findOne(request.getUserName());
+			RoleEntity roleEntity = roleRepository.findOne(request.getRoleName());
 			// khi query
-			UserDto userDto = userConverter.convertEntityToDto(userEntity);
+			RoleDto roleDto = roleConverter.convertEntityToDto(roleEntity);
 			CommonResponse response = new CommonResponse();
 			//Step 2: Kiểm tra user không có
 			
-			if(StringUtils.isEmpty(userDto)) {
+			if(StringUtils.isEmpty(roleDto)) {
 				response.setResultCode(ResultCode._02.getCode());
 				response.setResultMessage(ResultCode._02.getValue());
 				return response;
 			} else {
-				userDto = UserDto.updateUser(request);
+				roleDto = RoleDto.updateRole(request);
 				
-				userEntity = userConverter.convertDtoToEntity(userDto);
-				userRepository.save(userEntity);
+				roleEntity = roleConverter.convertDtoToEntity(roleDto);
+				roleRepository.save(roleEntity);
 				
 				response.setResultCode(ResultCode._00.getCode());
 				response.setResultMessage(ResultCode._00.getValue());
@@ -105,18 +112,18 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public CommonResponse deleteUser(String userName) {
+	public CommonResponse deleteRole(String roleName) {
 		try {
-			UserEntity userEntity = userRepository.findOne(userName);
-			UserDto userDto = userConverter.convertEntityToDto(userEntity);
+			RoleEntity roleEntity = roleRepository.findOne(roleName);
+			RoleDto roleDto = roleConverter.convertEntityToDto(roleEntity);
 			
 			CommonResponse response = new CommonResponse();
-			if(StringUtils.isEmpty(userDto)){
+			if(StringUtils.isEmpty(roleDto)){
 				response.setResultCode(ResultCode._02.getCode()); 
 				response.setResultMessage(ResultCode._02.getValue());
 				return response;
 			}
-			userRepository.delete(userName);// xao theo primary key
+			roleRepository.delete(roleName);// xao theo primary key
 			/*userRepository.delete(userEntity);*/ // xoa theo doi tuong
 			response.setResultCode(ResultCode._00.getCode());
 			response.setResultMessage(ResultCode._00.getValue());
@@ -128,6 +135,9 @@ public class UserServiceImpl implements UserService{
 					, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 		}
 		
+	
 	}
+
+	
 
 }
