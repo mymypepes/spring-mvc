@@ -1,4 +1,4 @@
-package com.example.request.admin;
+package com.example.request.admin.user;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

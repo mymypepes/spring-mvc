@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
+	
 	@GetMapping(value = "login")
 	public ModelAndView loginPage() {
 		ModelAndView loginPage = new ModelAndView("login/login");
