@@ -16,8 +16,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="<c:url value='/template/admin/assets/css/material-dashboard.css?v=2.1.2'/>" rel="stylesheet" />
+  <link href="<c:url value='/template/admin/assets/css/jquery.dataTables.css'/>" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<c:url value='/template/admin/assets/demo/demo.css'/>" rel="stylesheet" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -34,6 +38,7 @@
 
   <!--   Core JS Files   -->
   <script src="<c:url value='/template/admin/assets/js/core/jquery.min.js'/>"></script>
+  <script src="<c:url value='/template/admin/assets/js/jquery.dataTables.js'/>"></script>
   <script src="<c:url value='/template/admin/assets/js/core/popper.min.js'/>"></script>
   <script src="<c:url value='/template/admin/assets/js/core/bootstrap-material-design.min.js'/>"></script>
   <script src="<c:url value='/template/admin/assets/js/plugins/perfect-scrollbar.jquery.min.js'/>"></script>
