@@ -20,7 +20,7 @@
 				href="<c:url value='/admin'/>"> <i class="material-icons">dashboard</i>
 					<p>ADMIN</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="<c:url value='/admin/user'/>">
+			<li class="nav-item "><a class="nav-link" href="<c:url value='/admin/user/list'/>">
 					<i class="material-icons">person</i>
 					<p>User</p>
 			</a></li>

@@ -1,5 +1,8 @@
 package com.example.controller.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +15,9 @@ public class AdminController {
 		return adminPage;
 	}
 	
-	@GetMapping(value = "admin/user")
+	@GetMapping(value = "admin/user/list")
 	public ModelAndView userPage() {
-		ModelAndView adminPage = new ModelAndView("admin/user");
+		ModelAndView adminPage = new ModelAndView("admin/user/list");
 		return adminPage;
 	}
 	
@@ -44,6 +47,7 @@ public class AdminController {
 	
 	@GetMapping(value = "admin/category")
 	public ModelAndView categoryPage() {
+		List<String> list = new ArrayList<>();
 		ModelAndView categoryPage = new ModelAndView("admin/category");
 		return categoryPage;
 	}
