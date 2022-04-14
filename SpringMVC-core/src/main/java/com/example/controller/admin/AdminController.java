@@ -18,6 +18,12 @@ public class AdminController {
 		return adminPage;
 	}
 	
+	@GetMapping(value = "admin/user/add")
+	public ModelAndView addUserPage() {
+		ModelAndView adminPage = new ModelAndView("admin/user/add");
+		return adminPage;
+	}
+	
 	@GetMapping(value = "admin/role")
 	public ModelAndView rolePage() {
 		ModelAndView rolePage = new ModelAndView("admin/role");

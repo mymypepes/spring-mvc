@@ -10,7 +10,9 @@
 	<div class="row">
 		<div class="col-12">
 			<div>
-				<button type="button" class="btn btn-success btn-sm" title="Add User">+</button>
+				<a href="<c:url value='/admin/user/add'/>">
+					<button type="button" class="btn btn-success btn-sm" title="Add User" > + </button>
+				</a>
 			</div>
 			<div class="card">
 	           <div class="card-body">
