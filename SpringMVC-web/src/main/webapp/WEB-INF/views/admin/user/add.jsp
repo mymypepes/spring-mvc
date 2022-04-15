@@ -16,45 +16,45 @@
 						<input type="text" />
 					</div>
 				</div>
-				<div class = "col-12">
-					<div class="col-2">Password</div>
-					<div class="col-10">
+				<div class = "col-12" style="margin-bottom: 23px;">
+					<div class="col-2" style="display: inline-block;">Password</div>
+					<div class="col-10" style="display: inline;margin-left: -145px;">
 						<input type="text" />
 					</div>
 				</div>
-				<div class = "col-12">
-					<div class="col-2">Full Name</div>
-					<div class="col-10">
+				<div class = "col-12" style="margin-bottom: 23px;">
+					<div class="col-2" style="display: inline-block;">Full Name</div>
+					<div class="col-10" style="display: inline;margin-left: -145px;">
 						<input type="text" />
 					</div>
 				</div>
-				<div class = "col-12">
-					<div class="col-2">Address</div>
-					<div class="col-10">
+				<div class = "col-12" style="margin-bottom: 23px;">
+					<div class="col-2" style="display: inline-block;">Address</div>
+					<div class="col-10" style="display: inline;margin-left: -145px;">
 						<input type="text" />
 					</div>
 				</div>
-				<div class = "col-12">
-					<div class="col-2">Email</div>
-					<div class="col-10">
+				<div class = "col-12" style="margin-bottom: 23px;">
+					<div class="col-2" style="display: inline-block;">Email</div>
+					<div class="col-10" style="display: inline;margin-left: -145px;">
 						<input type="text" />
 					</div>
 				</div>
-				<div class = "col-12">
-					<div class="col-2">Phone number</div>
-					<div class="col-10">
+				<div class = "col-12" style="margin-bottom:23px;">
+					<div class="col-2" style="display: inline-block;">Phone Number</div>
+					<div class="col-10" style="display: inline;margin-left: -120px;">
 						<input type="text" />
 					</div>
 				</div>
-				<div class = "col-12">
-					<div class="col-2">File name</div>
-					<div class="col-10">
+				<div class = "col-12" style="margin-bottom: 23px;">
+					<div class="col-2" style="display: inline-block;">File name</div>
+					<div class="col-10"  style="display: inline;margin-left: -145px;">
 						<input type="text" />
 					</div>
 				</div>
-				<div class = "col-12">
-					<div class="col-2"></div>
-					<div class="col-2">
+				<div class = "col-12" style="margin-bottom: 23px;">
+					<div class="col-2" style="display: inline-block;"></div>
+					<div class="col-2" style="display: inline-block;">
 						<button>Cancel</button>
 						<button>Save</button>
 					</div>

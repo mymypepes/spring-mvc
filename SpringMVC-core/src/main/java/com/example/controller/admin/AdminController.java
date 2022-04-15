@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
@@ -47,7 +46,7 @@ public class AdminController {
 	
 	@GetMapping(value = "admin/category")
 	public ModelAndView categoryPage() {
-		List<String> list = new ArrayList<>();
+//		List<String> list = new ArrayList<>();
 		ModelAndView categoryPage = new ModelAndView("admin/category");
 		return categoryPage;
 	}
