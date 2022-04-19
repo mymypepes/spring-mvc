@@ -20,6 +20,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<c:url value='/template/admin/assets/demo/demo.css'/>" rel="stylesheet" />
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link href="<c:url value='/template/admin/assets/css/admin/user/add.css'/>" rel="stylesheet" />
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>

@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
 		try {
 			//Step 1: Query db findOne == findByUserName == findById
 			UserEntity userEntity = userRepository.findOne(request.getUserName());
-			UserDto userDto = userConverter.convertEntityToDto(userEntity);
+			UserDto userDto = userConverter.convertEntityToDto(userEntity);// lý do dùng DTO là: mún các service không nói chuyện trực tiếp với ENTITY mà pải thông qua DTO. Đẻ đảm bảo tính an toàn dữ liệu cho db
 			
 			CommonResponse response = new CommonResponse();
 			//Step 2: Kiểm tra user đã đc tạo chưa (Nếu tồn tại username sẽ báo là username đã tồn tại)
@@ -56,11 +56,11 @@ public class UserServiceImpl implements UserService{
 				userEntity = userConverter.convertDtoToEntity(userDto);
 				userRepository.save(userEntity);
 				
-				response.setResultCode(ResultCode._00.getCode());//trường hợp thành công
+				response.setResultCode(ResultCode._00.getCode());//trường hợp tạo thành công user
 				response.setResultMessage(ResultCode._00.getValue());
 				return response;
 			}
-			response.setResultCode(ResultCode._01.getCode()); // trường hợp bị sai
+			response.setResultCode(ResultCode._01.getCode()); // trường hợp đã tồn tại user
 			response.setResultMessage(ResultCode._01.getValue());
 			return response;
 			//Step 3: Sau khi thỏa hết những step trên sẽ insert xuống db
